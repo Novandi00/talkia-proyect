@@ -1,0 +1,174 @@
+openapi: 3.1.0
+info:
+  title: TalKIA CAA-Open-Engine API
+  version: 1.1.0
+  description: >
+    Deterministic Spec-Driven API for Augmentative and Alternative Communication (CAA).
+    Combines a Finite State Machine (FSM), SQLite empirical Bayesian Priors, and constrained LLM inference.
+    Includes the 6th open-state trigger ('conversacion') supporting questions, affirmations, and dynamic dialogue.
+servers:
+  - url: http://localhost:8000
+    description: Local Development Server
+paths:
+  /session/start:
+    post:
+      summary: Initialize a new CAA communication session
+      operationId: startSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+                - trigger_type
+                - timestamp
+              properties:
+                trigger_type:
+                  type: string
+                  enum: [saludo, despedida, necesidades, emociones, asistencia, conversacion]
+                conversation_intent:
+                  type: string
+                  enum: [pregunta, afirmacion, respuesta, topico_libre]
+                  default: topico_libre
+                interlocutor_context:
+                  type: string
+                  maxLength: 200
+                  description: Optional incoming phrase or environmental cue for open conversation mode
+                timestamp:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: Session initialized with Level 2 candidate words
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionStepResponse'
+  /session/step:
+    post:
+      summary: Advance FSM state by selecting a candidate word or changing conversation intent
+      operationId: stepSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+                - session_id
+                - selected_word
+                - latency_ms
+              properties:
+                session_id:
+                  type: string
+                  format: uuid
+                selected_word:
+                  type: string
+                conversation_intent:
+                  type: string
+                  enum: [pregunta, afirmacion, respuesta, topico_libre]
+                latency_ms:
+                  type: integer
+                  minimum: 0
+      responses:
+        '200':
+          description: Updated state and next 10 candidate words
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionStepResponse'
+  /session/commit:
+    post:
+      summary: Commit final constructed phrase to TTS and update Bayesian priors in SQLite
+      operationId: commitSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+                - session_id
+                - final_phrase
+              properties:
+                session_id:
+                  type: string
+                  format: uuid
+                final_phrase:
+                  type: string
+      responses:
+        '200':
+          description: Session committed and priors updated
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [session_id, committed, updated_priors_count]
+                properties:
+                  session_id:
+                    type: string
+                  committed:
+                    type: boolean
+                  updated_priors_count:
+                    type: integer
+components:
+  schemas:
+    LLMContractPayload:
+      type: object
+      additionalProperties: false
+      required:
+        - suggested_topic
+        - conversation_mode
+        - candidate_words
+        - constructed_sentence
+        - confidence_score
+      properties:
+        suggested_topic:
+          type: string
+          maxLength: 60
+        conversation_mode:
+          type: string
+          enum: [estandar, pregunta, afirmacion, respuesta, topico_libre]
+        candidate_words:
+          type: array
+          items:
+            type: string
+          minItems: 10
+          maxItems: 10
+          uniqueItems: true
+        constructed_sentence:
+          type: string
+        confidence_score:
+          type: number
+    SessionStepResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - session_id
+        - trigger_type
+        - hour_bucket
+        - step_index
+        - context_path
+        - payload
+      properties:
+        session_id:
+          type: string
+          format: uuid
+        trigger_type:
+          type: string
+        hour_bucket:
+          type: integer
+          minimum: 0
+          maximum: 23
+        step_index:
+          type: integer
+        context_path:
+          type: array
+          items:
+            type: string
+        payload:
+          $ref: '#/components/schemas/LLMContractPayload'

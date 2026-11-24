@@ -1,0 +1,121 @@
+{
+  "project": "TalKIA (caa-open-engine)",
+  "version": "1.1.0",
+  "paradigm": "Spec-Driven Development (SDD) + Bayesian-LLM Hybrid",
+  "orchestrator_targets": [
+    "antigravity",
+    "codex",
+    "cursor-agent",
+    "claude-code"
+  ],
+  "spec_freeze_status": "LOCKED",
+  "triggers": [
+    {
+      "id": "saludo",
+      "type": "deterministic_fsm",
+      "label": "Saludo"
+    },
+    {
+      "id": "despedida",
+      "type": "deterministic_fsm",
+      "label": "Despedida"
+    },
+    {
+      "id": "necesidades",
+      "type": "deterministic_fsm",
+      "label": "Necesidades"
+    },
+    {
+      "id": "emociones",
+      "type": "deterministic_fsm",
+      "label": "Emociones"
+    },
+    {
+      "id": "asistencia",
+      "type": "deterministic_fsm",
+      "label": "Asistencia"
+    },
+    {
+      "id": "conversacion",
+      "type": "open_loop_dynamic",
+      "label": "Conversación",
+      "sub_intents": [
+        "pregunta",
+        "afirmacion",
+        "respuesta",
+        "topico_libre"
+      ],
+      "description": "Open state allowing dynamic topic generation, questions, affirmations, and multi-turn feedback loops."
+    }
+  ],
+  "execution_pipeline": [
+    {
+      "iteration": 0,
+      "name": "Spec-Freeze & Contract Validation",
+      "status": "READY",
+      "artifacts": [
+        "specs/schema.sql",
+        "specs/llm_contract.json",
+        "specs/openapi.yaml"
+      ],
+      "verification_cmd": "python3 backend/test_engine.py --verify-specs"
+    },
+    {
+      "iteration": 1,
+      "name": "Bayesian Persistence & Laplace Smoothing Engine",
+      "status": "READY",
+      "artifacts": [
+        "backend/db.py",
+        "backend/bayesian_engine.py",
+        "dataset/seed_priors.json",
+        "dataset/seed_db.py"
+      ],
+      "verification_cmd": "python3 dataset/seed_db.py && python3 backend/test_engine.py --verify-bayesian"
+    },
+    {
+      "iteration": 2,
+      "name": "Constrained LLM Inference & FastAPI Server",
+      "status": "READY",
+      "artifacts": [
+        "backend/models.py",
+        "backend/llm_client.py",
+        "backend/main.py"
+      ],
+      "verification_cmd": "python3 backend/test_engine.py --verify-api"
+    },
+    {
+      "iteration": 3,
+      "name": "Zero-Friction CAA Frontend & TTS Loop",
+      "status": "READY",
+      "artifacts": [
+        "frontend/index.html",
+        "frontend/styles.css",
+        "frontend/app.js"
+      ],
+      "verification_cmd": "python3 -m http.server 3000 --directory frontend"
+    }
+  ],
+  "missing_context_checklist": {
+    "user_profile_personalization": {
+      "status": "PENDING_USER_INPUT",
+      "description": "Define motor/cognitive profile of target user (e.g., eye-tracking dwell time, switch scanning, touch target size, regional Spanish Rioplatense lexicon)."
+    },
+    "llm_provider_config": {
+      "status": "Configurable via .env",
+      "recommended_models": [
+        "gemini-2.5-flash",
+        "gpt-4o-mini",
+        "local-ollama-llama3.2"
+      ],
+      "latency_budget_ms": 600
+    },
+    "tts_voice_engine": {
+      "status": "Web Speech API fallback active",
+      "upgrade_path": "ElevenLabs / Piper TTS local neural voice in Spanish (es-AR)"
+    },
+    "interlocutor_input_channel": {
+      "status": "OPTIONAL_EXTENSION",
+      "description": "Microphone Whisper/WebSpeech ASR capture for the 'conversacion' trigger so the system hears the other person's question and suggests immediate answers/questions."
+    }
+  }
+}

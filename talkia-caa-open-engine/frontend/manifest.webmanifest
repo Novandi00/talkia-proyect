@@ -1,0 +1,17 @@
+{
+  "name": "TalKIA CAA — Open Engine",
+  "short_name": "TalKIA",
+  "description": "Sistema de Comunicación Aumentativa y Alternativa con Principio LAMP y Red Bayesiana",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#38bdf8",
+  "icons": [
+    {
+      "src": "./logo.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

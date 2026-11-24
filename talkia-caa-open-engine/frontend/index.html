@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TalKIA — CAA Open Engine v2.0</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="logo.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-fitzgerald="on" data-sensory="calm">
+  <header class="app-header">
+    <div class="brand">
+      <img src="logo.svg" alt="TalKIA Logo" class="brand-logo" width="46" height="46" />
+      <div>
+        <h1>TalKIA <span class="tag-version">open-engine v2.0</span></h1>
+        <p id="topic-indicator">Comunicación Aumentativa y Alternativa · Principio LAMP</p>
+      </div>
+    </div>
+    
+    <div class="controls-bar">
+      <!-- Selector de Escenario (SpeakPix) -->
+      <div class="scenario-selector">
+        <label for="scenario-select" class="control-label">📍 Escenario:</label>
+        <select id="scenario-select" class="styled-select" aria-label="Escenario activo">
+          <option value="general" selected>🌐 General</option>
+          <option value="casa">🏠 Casa</option>
+          <option value="escuela">🎒 Escuela</option>
+          <option value="calle">🚶 Calle</option>
+          <option value="salud">🏥 Salud</option>
+        </select>
+      </div>
+
+      <!-- Switches de Accesibilidad Cognitiva / Sensorial -->
+      <div class="toggle-group">
+        <button id="toggle-fitzgerald" class="pill-btn active" title="Alternar color morfosintáctico Fitzgerald Key">
+          🎨 Fitzgerald
+        </button>
+        <button id="toggle-sensory" class="pill-btn" title="Alternar modo baja carga sensorial sin animaciones">
+          🌿 Sensorial Calmo
+        </button>
+      </div>
+
+      <div class="status-pill" id="sync-pill">⚡ Modo Online</div>
+    </div>
+  </header>
+
+  <main class="caa-container">
+    <!-- Barra de Oración y TTS -->
+    <section class="sentence-bar" aria-label="Frase construida">
+      <div class="sentence-content">
+        <div class="word-chips" id="word-chips"></div>
+        <p class="constructed-sentence" id="constructed-sentence">¡Hola! ¿Cómo estás?</p>
+      </div>
+      <div class="sentence-actions">
+        <button id="btn-undo" class="btn-action btn-secondary" title="Borrar última palabra (Backspace)">
+          ⌫ Deshacer
+        </button>
+        <button id="btn-clear" class="btn-action btn-secondary" title="Reiniciar tablero">
+          ↺ Limpiar
+        </button>
+        <button id="btn-speak" class="btn-action btn-speak" title="Reproducir en voz alta y confirmar">
+          🔊 Hablar
+        </button>
+      </div>
+    </section>
+
+    <!-- Nivel 1: Los 6 Triggers Fundamentales -->
+    <section class="triggers-section" aria-label="Nodos de intención (Nivel 1)">
+      <div class="triggers-grid" id="triggers-grid">
+        <button class="trigger-card" data-trigger="saludo">
+          <span class="trigger-icon">👋</span>
+          <span class="trigger-label">Saludo</span>
+        </button>
+        <button class="trigger-card" data-trigger="necesidades">
+          <span class="trigger-icon">💧</span>
+          <span class="trigger-label">Necesidades</span>
+        </button>
+        <button class="trigger-card" data-trigger="emociones">
+          <span class="trigger-icon">💛</span>
+          <span class="trigger-label">Emociones</span>
+        </button>
+        <button class="trigger-card" data-trigger="asistencia">
+          <span class="trigger-icon">🛎️</span>
+          <span class="trigger-label">Asistencia</span>
+        </button>
+        <button class="trigger-card trigger-conversacion active" data-trigger="conversacion">
+          <span class="trigger-icon">💬</span>
+          <span class="trigger-label">Conversación</span>
+          <span class="trigger-subtag">Preguntas · Afirmación · Libre</span>
+        </button>
+        <button class="trigger-card" data-trigger="despedida">
+          <span class="trigger-icon">✨</span>
+          <span class="trigger-label">Despedida</span>
+        </button>
+      </div>
+
+      <!-- Submodos de Conversación Abierta -->
+      <div class="conversation-modes" id="conversation-modes">
+        <span class="mode-title">Sub-modo de Diálogo:</span>
+        <button class="mode-btn active" data-intent="pregunta">❓ Pregunta</button>
+        <button class="mode-btn" data-intent="afirmacion">💡 Afirmación</button>
+        <button class="mode-btn" data-intent="respuesta">↩️ Respuesta</button>
+        <button class="mode-btn" data-intent="topico_libre">🌐 Tópico Libre</button>
+      </div>
+    </section>
+
+    <!-- Panel Core Fijo (Principio LAMP: 12 posiciones inmutables) -->
+    <section class="board-section" aria-label="Vocabulario Núcleo Fijo (LAMP)">
+      <div class="section-header">
+        <h2>Vocabulario Núcleo Fijo (Core LAMP)</h2>
+        <span class="section-tag">Posiciones inmutables para memoria motora</span>
+      </div>
+      <div class="core-grid" id="core-grid"></div>
+    </section>
+
+    <!-- Panel Fringe Contextual (10 palabras dinámicas según Bayesiano/Escenario) -->
+    <section class="board-section" aria-label="Vocabulario Contextual Periférico (Fringe)">
+      <div class="section-header">
+        <h2>Vocabulario Contextual (Fringe Dinámico)</h2>
+        <span class="section-tag" id="fringe-confidence">Confianza: 92%</span>
+      </div>
+      <div class="fringe-grid" id="fringe-grid"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>TalKIA CAA Open Engine — Licencia Abierta MIT · Pictogramas ARASAAC (CC BY-NC-SA) · Voces Piper WASM</p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

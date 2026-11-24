@@ -1,0 +1,408 @@
+{
+  "version": "1.1.0",
+  "locale": "es-AR",
+  "triggers": {
+    "saludo": {
+      "general": {
+        "__START__": [
+          "Hola",
+          "Buen",
+          "Cómo",
+          "Qué",
+          "Mucho",
+          "Feliz",
+          "Tanto",
+          "Buenas",
+          "Todo",
+          "Alegría"
+        ],
+        "Hola": [
+          "cómo",
+          "qué",
+          "todo",
+          "mamá",
+          "papá",
+          "doctor",
+          "amigo",
+          "familia",
+          "buen",
+          "gracias"
+        ],
+        "Buen": [
+          "día",
+          "comienzo",
+          "momento",
+          "descanso",
+          "trabajo",
+          "viaje",
+          "provecho",
+          "fin",
+          "lunes",
+          "tiempo"
+        ],
+        "Cómo": [
+          "estás",
+          "te",
+          "amaneciste",
+          "va",
+          "fue",
+          "sigue",
+          "anda",
+          "pasaste",
+          "te_sentís",
+          "vamos"
+        ]
+      }
+    },
+    "despedida": {
+      "general": {
+        "__START__": [
+          "Chau",
+          "Hasta",
+          "Nos",
+          "Que",
+          "Gracias",
+          "Buenas",
+          "Me",
+          "Hablamos",
+          "Cuídate",
+          "Adiós"
+        ],
+        "Hasta": [
+          "mañana",
+          "luego",
+          "pronto",
+          "la",
+          "el",
+          "más",
+          "otro",
+          "que",
+          "vuelta",
+          "siempre"
+        ],
+        "Nos": [
+          "vemos",
+          "hablamos",
+          "encontramos",
+          "escribimos",
+          "comunicamos",
+          "saludamos",
+          "juntamos",
+          "quedamos",
+          "vamos",
+          "despedimos"
+        ]
+      }
+    },
+    "necesidades": {
+      "general": {
+        "__START__": [
+          "Quiero",
+          "Necesito",
+          "Tengo",
+          "Me",
+          "Por",
+          "Puedo",
+          "Traeme",
+          "Vamos",
+          "Hora",
+          "Dónde"
+        ],
+        "Quiero": [
+          "agua",
+          "comer",
+          "descansar",
+          "ir",
+          "dormir",
+          "tomar",
+          "salir",
+          "baño",
+          "cambiar",
+          "ver"
+        ],
+        "Tengo": [
+          "sed",
+          "hambre",
+          "frío",
+          "calor",
+          "sueño",
+          "dolor",
+          "ganas",
+          "cansancio",
+          "fiebre",
+          "picazón"
+        ],
+        "Necesito": [
+          "ir_al_baño",
+          "mi_medicación",
+          "descansar",
+          "cambiar_postura",
+          "limpiar",
+          "silencio",
+          "luz",
+          "frazada",
+          "almohada",
+          "ayuda"
+        ]
+      }
+    },
+    "emociones": {
+      "general": {
+        "__START__": [
+          "Me",
+          "Estoy",
+          "Siento",
+          "Hoy",
+          "Tengo",
+          "Qué",
+          "Muy",
+          "Un",
+          "Extraño",
+          "Amo"
+        ],
+        "Estoy": [
+          "feliz",
+          "tranquilo",
+          "cansado",
+          "triste",
+          "ansioso",
+          "enojado",
+          "orgulloso",
+          "aburrido",
+          "sorprendido",
+          "mejor"
+        ],
+        "Me": [
+          "siento",
+          "gusta",
+          "pone",
+          "hace",
+          "duele",
+          "alegra",
+          "preocupa",
+          "molesta",
+          "encanta",
+          "tranquiliza"
+        ]
+      }
+    },
+    "asistencia": {
+      "general": {
+        "__START__": [
+          "Ayudame",
+          "Por",
+          "Me",
+          "Podés",
+          "Acercame",
+          "acomodame",
+          "Avisale",
+          "Llamá",
+          "Prendé",
+          "Apagá"
+        ],
+        "Podés": [
+          "acercarme",
+          "acomodarme",
+          "llamar",
+          "prender",
+          "apagar",
+          "abrir",
+          "cerrar",
+          "subir",
+          "bajar",
+          "esperar"
+        ],
+        "Me": [
+          "duele",
+          "incomoda",
+          "cuesta",
+          "ayudás",
+          "acomodás",
+          "pasás",
+          "leés",
+          "escuchás",
+          "esperás",
+          "llevás"
+        ]
+      }
+    },
+    "conversacion": {
+      "pregunta": {
+        "__START__": [
+          "¿Qué",
+          "¿Cómo",
+          "¿Cuándo",
+          "¿Dónde",
+          "¿Por_qué",
+          "¿Quién",
+          "¿Puedo",
+          "¿Te",
+          "¿Vamos",
+          "¿Cuál"
+        ],
+        "¿Qué": [
+          "hacés",
+          "pasó",
+          "vamos_a_hacer",
+          "comemos",
+          "opinás",
+          "hora_es",
+          "día_es",
+          "miramos",
+          "escuchamos",
+          "tal"
+        ],
+        "¿Cómo": [
+          "te_fue",
+          "estás_hoy",
+          "se_hace",
+          "sigue_todo",
+          "te_sentís",
+          "llegamos",
+          "funciona",
+          "terminó",
+          "empezó",
+          "salió"
+        ],
+        "¿Cuándo": [
+          "vamos",
+          "viene",
+          "llega",
+          "empieza",
+          "termina",
+          "salimos",
+          "volvemos",
+          "comemos",
+          "descansamos",
+          "nos_vemos"
+        ]
+      },
+      "afirmacion": {
+        "__START__": [
+          "Yo",
+          "Pienso",
+          "Me",
+          "Creo",
+          "Hoy",
+          "Quiero",
+          "Estuvo",
+          "Prefiero",
+          "Recuerdo",
+          "Sé"
+        ],
+        "Yo": [
+          "pienso",
+          "creo",
+          "quiero",
+          "prefiero",
+          "opino",
+          "recuerdo",
+          "entiendo",
+          "siento",
+          "puedo",
+          "sé"
+        ],
+        "Me": [
+          "encantó",
+          "parece_bien",
+          "gustaría_hablar",
+          "interesa",
+          "acuerdo",
+          "divierte",
+          "sirve",
+          "llama_la_atención",
+          "queda_claro",
+          "hace_bien"
+        ],
+        "Pienso": [
+          "que_sí",
+          "que_no",
+          "lo_mismo",
+          "distinto",
+          "en_eso",
+          "que_es_bueno",
+          "que_podemos",
+          "en_mañana",
+          "en_nosotros",
+          "mejor"
+        ]
+      },
+      "respuesta": {
+        "__START__": [
+          "Sí",
+          "No",
+          "Tal_vez",
+          "Claro",
+          "Exacto",
+          "Depende",
+          "Todavía",
+          "Ya",
+          "Seguro",
+          "Perdón"
+        ],
+        "Sí": [
+          "por_supuesto",
+          "me_gusta",
+          "dale",
+          "quiero",
+          "estoy_de_acuerdo",
+          "ahora",
+          "después",
+          "gracias",
+          "claro",
+          "totalmente"
+        ],
+        "No": [
+          "gracias",
+          "quiero",
+          "puedo",
+          "me_gusta",
+          "estoy_seguro",
+          "todavía",
+          "hace_falta",
+          "importa",
+          "sé",
+          "ahora"
+        ]
+      },
+      "topico_libre": {
+        "__START__": [
+          "Hablemos",
+          "Contame",
+          "Sabías",
+          "Ayer",
+          "Mañana",
+          "Música",
+          "Familia",
+          "Paseo",
+          "Noticias",
+          "Planes"
+        ],
+        "Hablemos": [
+          "de_hoy",
+          "de_nosotros",
+          "de_música",
+          "de_planes",
+          "del_fin_de_semana",
+          "de_la_familia",
+          "de_películas",
+          "de_comida",
+          "un_rato",
+          "tranquilos"
+        ],
+        "Contame": [
+          "algo_nuevo",
+          "cómo_te_fue",
+          "una_historia",
+          "qué_hiciste",
+          "tus_planes",
+          "qué_pensás",
+          "de_tu_día",
+          "las_novedades",
+          "un_chiste",
+          "más"
+        ]
+      }
+    }
+  }
+}

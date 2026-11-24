@@ -1,0 +1,453 @@
+/* frontend/styles.css — Diseño Estético, Accesible y Ergonómico v2.0 */
+:root {
+  --bg-gradient: radial-gradient(circle at 15% 15%, #131b2e 0%, #090d16 100%);
+  --surface: #111827;
+  --surface-card: #1f293d;
+  --surface-elevated: #28354f;
+  --text: #f9fafb;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.25);
+  --accent-conv: #a855f7;
+  --speak-green: #22c55e;
+  --speak-hover: #16a34a;
+  --border: #334155;
+  --focus-ring: #fde047;
+
+  /* Clave morfosintáctica Fitzgerald Key */
+  --fk-pronoun: #facc15;   /* Amarillo: Personas / Pronombres */
+  --fk-verb: #22c55e;      /* Verde: Verbos / Acciones */
+  --fk-noun: #fb923c;      /* Naranja: Sustantivos / Lugares */
+  --fk-adjective: #38bdf8; /* Azul: Descriptores / Estados */
+  --fk-social: #f472b6;    /* Rosa: Social / Cortesía */
+  --fk-question: #c084fc;  /* Violeta: Preguntas */
+  --fk-negation: #f87171;  /* Rojo suave: Negación / Parar */
+  --fk-misc: #94a3b8;      /* Gris: Neutro */
+}
+
+/* Modo Sensorial Calmo (Baja carga sensorial inspirada en ekyaaa/talkie-helpie) */
+body[data-sensory="calm"] {
+  --bg-gradient: #f8fafc;
+  --surface: #ffffff;
+  --surface-card: #f1f5f9;
+  --surface-elevated: #e2e8f0;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --border: #cbd5e1;
+  --accent-glow: transparent;
+}
+
+body[data-sensory="calm"] *,
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Encabezado */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.brand-logo {
+  border-radius: 12px;
+  box-shadow: 0 4px 14px var(--accent-glow);
+}
+
+.brand h1 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.tag-version {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: rgba(56, 189, 248, 0.12);
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  margin-left: 0.3rem;
+}
+
+.brand p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.controls-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.scenario-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.control-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.styled-select {
+  background: var(--surface-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.toggle-group {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.pill-btn {
+  background: var(--surface-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pill-btn.active {
+  background: var(--accent);
+  color: #090d16;
+  border-color: var(--accent);
+}
+
+.status-pill {
+  background: rgba(34, 197, 94, 0.14);
+  border: 1px solid var(--speak-green);
+  color: var(--speak-green);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Contenedor Principal */
+.caa-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  max-width: 1240px;
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+}
+
+/* Barra de Oración */
+.sentence-bar {
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  border-radius: 1.1rem;
+  padding: 1rem 1.35rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap;
+}
+
+.word-chips {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+
+.word-chip {
+  background: var(--surface-elevated);
+  color: var(--accent);
+  padding: 0.2rem 0.65rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.constructed-sentence {
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.sentence-actions {
+  display: flex;
+  gap: 0.55rem;
+}
+
+.btn-action {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.15rem;
+  font-size: 1rem;
+  transition: transform 0.08s ease, filter 0.15s ease;
+  touch-action: manipulation;
+}
+
+.btn-action:active {
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  background: var(--surface-elevated);
+  color: var(--text);
+}
+
+.btn-speak {
+  background: var(--speak-green);
+  color: #052e16;
+  font-size: 1.1rem;
+  padding: 0.75rem 1.45rem;
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.3);
+}
+
+/* Nodos Nivel 1 (Triggers) */
+.triggers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.65rem;
+}
+
+.trigger-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 0.9rem;
+  padding: 0.75rem;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 82px;
+  gap: 0.25rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.trigger-card.active {
+  border-color: var(--accent);
+  background: rgba(56, 189, 248, 0.12);
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.trigger-conversacion.active {
+  border-color: var(--accent-conv);
+  background: rgba(168, 85, 247, 0.14);
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.25);
+}
+
+.trigger-icon {
+  font-size: 1.6rem;
+}
+
+.trigger-label {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.trigger-subtag {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.conversation-modes {
+  margin-top: 0.55rem;
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid var(--accent-conv);
+  border-radius: 0.85rem;
+  padding: 0.55rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.mode-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #d8b4fe;
+}
+
+.mode-btn {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.mode-btn.active {
+  background: var(--accent-conv);
+  color: #ffffff;
+  border-color: #d8b4fe;
+}
+
+/* Secciones de Tableros Core y Fringe */
+.board-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 0.9rem 1.1rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.section-header h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.section-tag {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Grillas LAMP Core e Inmutables (2 filas x 6 columnas) */
+.core-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.6rem;
+}
+
+/* Grillas Fringe Dinámico (2 filas x 5 columnas) */
+.fringe-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.65rem;
+}
+
+/* Celdas CAA con Pictogramas */
+.caa-btn {
+  background: var(--surface-card);
+  border: 3px solid var(--border);
+  color: var(--text);
+  min-height: 86px;
+  border-radius: 0.85rem;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  touch-action: manipulation;
+}
+
+.caa-btn:hover {
+  background: var(--surface-elevated);
+}
+
+.caa-picto {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.caa-svg-icon {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.caa-label {
+  line-height: 1.1;
+}
+
+/* Switch Scanning Focus: alto contraste obligatorio */
+.caa-btn:focus-visible,
+button:focus-visible {
+  outline: 4px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Codificación de Color Fitzgerald Key */
+body[data-fitzgerald="on"] .caa-btn[data-fk="pronoun"]   { border-color: var(--fk-pronoun); }
+body[data-fitzgerald="on"] .caa-btn[data-fk="verb"]      { border-color: var(--fk-verb); }
+body[data-fitzgerald="on"] .caa-btn[data-fk="noun"]      { border-color: var(--fk-noun); }
+body[data-fitzgerald="on"] .caa-btn[data-fk="adjective"] { border-color: var(--fk-adjective); }
+body[data-fitzgerald="on"] .caa-btn[data-fk="social"]    { border-color: var(--fk-social); }
+body[data-fitzgerald="on"] .caa-btn[data-fk="question"]  { border-color: var(--fk-question); }
+body[data-fitzgerald="on"] .caa-btn[data-fk="negation"]  { border-color: var(--fk-negation); }
+
+.app-footer {
+  text-align: center;
+  padding: 1.5rem 0 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 860px) {
+  .core-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .fringe-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

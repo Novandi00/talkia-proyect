@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="240" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </linearGradient>
+    <linearGradient id="bubbleGrad" x1="40" y1="40" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="sunGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Base redondeada estilo App Icon -->
+  <rect width="240" height="240" rx="54" fill="url(#bgGrad)"/>
+  <rect x="2" y="2" width="236" height="236" rx="52" stroke="rgba(255, 255, 255, 0.12)" stroke-width="2"/>
+
+  <!-- Resplandor sutil -->
+  <circle cx="120" cy="115" r="65" fill="#6366f1" opacity="0.25" filter="url(#softGlow)"/>
+
+  <!-- Burbuja de Diálogo Principal (CAA / Comunicación) -->
+  <path d="M60 76C60 62.7452 70.7452 52 84 52H156C169.255 52 180 62.7452 180 76V124C180 137.255 169.255 148 156 148H106L74 172V148H84H60V76Z" 
+        fill="url(#bubbleGrad)" />
+
+  <!-- Nodos del espectro autista y conectividad neuronal -->
+  <!-- Nodo 1: Personas (Amarillo Fitzgerald) -->
+  <circle cx="95" cy="100" r="14" fill="#facc15" stroke="#ffffff" stroke-width="2.5"/>
+  <!-- Nodo 2: Acciones (Verde Fitzgerald) -->
+  <circle cx="145" cy="100" r="14" fill="#22c55e" stroke="#ffffff" stroke-width="2.5"/>
+  <!-- Puente neuronal -->
+  <path d="M109 100H131" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 3"/>
+
+  <!-- Ondas de voz / Sonido TTS -->
+  <path d="M194 88C198 96 198 104 194 112" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M204 80C211 93 211 107 204 120" stroke="#a855f7" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- Estrella / Chispa de comprensión (AAC Spark) -->
+  <path d="M64 42L66 48L72 50L66 52L64 58L62 52L56 50L62 48Z" fill="#38bdf8"/>
+</svg>

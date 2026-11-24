@@ -1,0 +1,7 @@
+# Zero mandatory external dependencies for core engine (runs on Python 3.10+ stdlib sqlite3/http.server)
+# Optional production dependencies for FastAPI / OpenAI / Gemini structured inference:
+fastapi>=0.115.0
+uvicorn>=0.32.0
+pydantic>=2.9.0
+jsonschema>=4.23.0
+google-genai>=0.3.0

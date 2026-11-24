@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TalKIA_LLM_Step_Contract",
+  "description": "Deterministic contract for hybrid Bayesian + LLM candidate word generation in caa-open-engine",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "suggested_topic",
+    "conversation_mode",
+    "candidate_words",
+    "constructed_sentence",
+    "confidence_score"
+  ],
+  "properties": {
+    "suggested_topic": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Contextual label for the current communicative intent or open conversation branch."
+    },
+    "conversation_mode": {
+      "type": "string",
+      "enum": [
+        "estandar",
+        "pregunta",
+        "afirmacion",
+        "respuesta",
+        "topico_libre"
+      ],
+      "description": "Active dialogue sub-mode; dynamic when trigger_type is 'conversacion'."
+    },
+    "candidate_words": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 32
+      },
+      "minItems": 10,
+      "maxItems": 10,
+      "uniqueItems": true,
+      "description": "Exact array of 10 candidate words ranked by P(W_n | Trigger, Intent, HourBucket, W_1..n-1)."
+    },
+    "constructed_sentence": {
+      "type": "string",
+      "maxLength": 240,
+      "description": "Natural first-person singular sentence ready for Text-to-Speech (TTS) output."
+    },
+    "confidence_score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Hybrid confidence weight between empirical SQLite prior and contextual LLM inference."
+    }
+  }
+}
