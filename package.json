@@ -1,0 +1,22 @@
+{
+  "name": "talkia-proyect",
+  "version": "2.0.0",
+  "description": "TalKIA (caa-open-engine): Motor Abierto de Comunicación Aumentativa y Alternativa con Principio LAMP",
+  "private": true,
+  "scripts": {
+    "dev": "python3 -c 'import subprocess, sys, time, os; env = os.environ.copy(); env[\"PYTHONPATH\"] = \"talkia-caa-open-engine:\" + env.get(\"PYTHONPATH\", \"\"); b = subprocess.Popen([sys.executable, \"talkia-caa-open-engine/backend/main.py\"], env=env); time.sleep(0.5); f = subprocess.Popen([sys.executable, \"-m\", \"http.server\", \"3000\", \"--directory\", \"talkia-caa-open-engine/frontend\"]); print(\"\\n\\n✨ TalKIA CAA v2.0 corriendo en:\\n  👉 Frontend: http://localhost:3000\\n  👉 Backend API: http://localhost:8000\\n\\nPresiona Ctrl+C para detener.\\n\"); b.wait(); f.wait()'",
+    "dev:backend": "python3 talkia-caa-open-engine/backend/main.py",
+    "dev:frontend": "python3 -m http.server 3000 --directory talkia-caa-open-engine/frontend",
+    "test": "python3 talkia-caa-open-engine/backend/test_engine.py"
+  },
+  "keywords": [
+    "aac",
+    "caa",
+    "autism",
+    "lamp",
+    "arasaac",
+    "accessibility"
+  ],
+  "author": "TalKIA Team",
+  "license": "MIT"
+}

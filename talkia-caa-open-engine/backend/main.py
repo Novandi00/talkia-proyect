@@ -7,10 +7,15 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import logging
 import os
+import sys
 import time
 from typing import Any, Dict
 from urllib.parse import parse_qs, urlparse
 import uuid
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
 
 from backend.core_fringe_engine import CoreFringeEngine
 from backend.pictogram_service import PictogramService
